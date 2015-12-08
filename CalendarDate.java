@@ -32,6 +32,7 @@ import java.text.DecimalFormat;  // for formatting numbers
 **  "earlier than" another.  Also, two dates can be compared to determine the number 
 **  of days separating these two dates.
 **
+** By: Alex Thoennes
 */
 
 public class CalendarDate {
@@ -191,22 +192,28 @@ public class CalendarDate {
    */
    public boolean isEarlierThan(CalendarDate date) {
       boolean result = false;
+      // check if this year is earlier than the compared to year
       if (this.getYear() < date.getYear())
       {
     	  result = true;
       }
+      // if the years are equal...
       else if (this.getYear() == date.getYear())
       {
+      // check if this month is earlier than the compared to month
     	  if (this.getMonth() < date.getMonth())
     	  {
     		  result = true;
     	  }
+        //if the months are equal...
     	  else if (this.getMonth() == date.getMonth())
 		  {
+        // check if this day is earlier than the compared to day
 			  if (this.getDay() < date.getDay())
 			  {
 				  result = true;
 			  }
+           // if the days are equal...
 			  else if (this.getDay() == date.getDay())
 			  {
 				  result = false;
@@ -222,6 +229,8 @@ public class CalendarDate {
    */
    public boolean isLaterThan(CalendarDate date) {
 	   boolean result = false;
+      //essentially this method goes through and individually checks and compares
+      //the values of the years, months, and days
 	      if (this.getYear() > date.getYear())
 	      {
 	    	  result = true;
@@ -253,6 +262,7 @@ public class CalendarDate {
    */
    public boolean equals(CalendarDate date) {
 	   boolean result = false;
+      //simply use the previous method values to determine if the dates are equal
 	   if ((isLaterThan(date) == false) && (isEarlierThan(date) == false))
 	   {
 		   result = true;
@@ -275,10 +285,12 @@ public class CalendarDate {
 	   int result = 0;
 	   if (this.isEarlierThan(date) == true)
 	   {
+      //to get the negative value, multiply by -1
 		   result = (date.daysDifference(this) * -1);
 	   }
 	   else if (this.isLaterThan(date) == true)
 	   {
+      //just set result to the positive value here
 		   result = (this.daysDifference(date));
 	   }
 	   return result;
